@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Head_Tail</title>
+    <style>
+    form {
+            background-color: pink;
+            border: 1px solid black;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .heading {
+            text-align: center;
+            font-size: 30px;
+            font-weight: 600;
+        }
+
+        .info {
+            font-size: 25px;
+            font-family: 'Times New Roman', Times, serif;
+
+        }
+        
+        .btn {
+            background-color: black;
+            color: white;
+            height: 50px;
+            width: 100px;
+            font-size: 18px;
+            margin-left: 20px;
+        }
+    
+    </style>
+</head>
+<body>
+ <form action="">
+     <p class="heading">Randomly Generate Head and Tail</p>
+     <p class="info">Click below button will randomly gererate head or tail</p>
+     <button type="button" class="btn" onclick="return FlipACoin()">Click Me</button>
+     <p id="resultMessage"></p> 
+ </form>
+</body>
+<script>
+    let face,number;
+    function FlipACoin(){
+        const resultMessage=document.getElementById('resultMessage');
+
+        //clear previously genereted output
+        face='';
+        resultMessage.innerHTML=face;
+
+        //generate new output
+        number=Math.floor(Math.random()*2);
+        if(number===0){
+            face='<img src="images/good.png" alt="head">' +'<br>'+'Heads come';
+        }
+        else{
+            face='<img src="images/bad.jpg" alt="tail">' +'<br>'+ 'Tail come';
+        }
+        resultMessage.innerHTML=face;
+    }
+
+</script>
+</html>

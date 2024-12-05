@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Even Odd</title>
+    <style>
+        form {
+            background-color: lightblue;
+            border: 1px solid black;
+            padding: 20px;
+        }
+
+        .heading {
+            text-align: center;
+            font-size: 30px;
+            font-weight: 600;
+        }
+
+        .info {
+            font-size: 25px;
+            font-family: 'Times New Roman', Times, serif;
+
+        }
+
+        .label {
+            font-size: 45px;
+            font-weight: 500;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        input {
+            height: 50px;
+            width: 500px;
+            margin-bottom: 100px;
+        }
+
+        button {
+            background-color: black;
+            color: white;
+            width: 100px;
+            height: 50px;
+            font-size: 25px;
+            font-weight: 600;
+            font-family: 'Times New Roman', Times, serif;
+            margin-left: 20px;
+        }
+
+        #errorMessage {
+            color: white;
+            background-color: red;
+            font-size: 35px;
+            text-align: center;
+        }
+
+        #resultMessage {
+            color: yellow;
+            background-color: green;
+            font-size: 35px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="">
+        <p class="heading">Even Or Odd Detector</p>
+        <p class="info">Enter any numeric value in below field then, click button to detect whether number is odd or even</p>
+        <label for="number" class="label">Enter Number:</label>
+        <input type="text" placeholder="Enter any number" id="number">
+        <button type="submit" onclick="return checkEvenOdd()">Check</button>
+        <p id="errorMessage"></p> <!-- Placeholder for error message -->
+        <p id="resultMessage"></p> <!-- Placeholder for result message -->
+    </form>
+</body>
+<script>
+    function checkEvenOdd() {
+        // Get the value of the input field
+        const inputValue = document.getElementById("number").value;
+        const errorMessage = document.getElementById("errorMessage");
+        const resultMessage = document.getElementById("resultMessage");
+
+        // Check if the input is not a number
+        if (isNaN(inputValue) || inputValue.trim() === "") {
+            // Clear any previous result message and process the input
+            resultMessage.textContent = "";
+            // Display an error message
+            errorMessage.textContent = "Please enter a numeric value";
+        }
+        else {
+            // Clear any previous error message and process the input
+            errorMessage.textContent = "";
+            if (inputValue % 2 === 0)
+                resultMessage.textContent = "You Have Entered Even Value";
+            else resultMessage.textContent = "You Have Entered Odd Value";
+        }
+    }
+</script>
+
+</html>

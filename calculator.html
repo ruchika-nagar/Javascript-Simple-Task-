@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        form {
+            background-color: lightblue;
+            background-color: lightblue;
+            padding: 20px;
+            font-size: 30px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .heading {
+            text-align: center;
+            font-weight: 600;
+            font-size: 35px;
+        }
+
+        .info {
+            background-color: wheat;
+        }
+
+        div {
+            margin: 10px;
+        }
+
+        label {
+            font-size: 40px;
+        }
+
+        input {
+            width: 400px;
+            height: 100px;
+            font-size: 30px;
+        }
+
+        #operation {
+            width: 400px;
+            height: 100px;
+            font-size: 30px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .btn {
+            background-color: black;
+            color: white;
+            width: 400px;
+            height: 40px;
+            font-size: 30px;
+            margin: 50px;
+            border-radius: 50px;
+        }
+        #errorMessage {
+            background-color: red;
+            color: white;
+            text-align: center;
+            font-size: 50px;
+        }
+
+        #resultMessage {
+            background-color: green;
+            color: yellow;
+            text-align: center;
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="">
+        <p class="heading">Calculator</p>
+        <div class="info">
+            <p>Enter numeric value in below two field</p>
+            <p>Then select any one operation to peform on that two value.</p>
+            <p>Click button you will get your output below</p>
+        </div>
+        <div>
+            <label for="FValue" class="Fvalue">First Value :</label>
+            <input type="text" class="FValue" id="FValue" placeholder="Enter any number">
+        </div>
+        <div>
+            <label for="SValue" class="SValue">Second Value :</label>
+            <input type="text" class="SValue" id="SValue" placeholder="Enter any number">
+        </div>
+        <div>
+            <label for="operation">Select any one operation :</label>
+            <select name="operation" id="operation">
+                <option value="Add">Addition</option>
+                <option value="Sub">Substraction</option>
+                <option value="Mul">Multiplication</option>
+                <option value="Div">Division</option>
+                <option value="Mod">Modulo</option>
+            </select>
+        </div>
+        <button type="button" id="btn" class="btn" onclick="return PerformOperation()">Perform Operation</button>
+        <p id="errorMessage"></p>
+        <p id="resultMessage"></p>
+    </form>
+</body>
+<script>
+    let output;
+    function PerformOperation() {
+        const FirstValue = parseFloat(document.getElementById('FValue').value);
+        const SecondValue = parseFloat(document.getElementById('SValue').value);
+        const Operation = document.getElementById('operation').value;
+        const ErrorMessage = document.getElementById('errorMessage');
+        const ResultMessage = document.getElementById('resultMessage');
+
+        //clear previously printed output
+        output = '';
+        ResultMessage.textContent = output;
+
+
+        //check whether user enter numeric value or not
+        if (isNaN(FirstValue) || isNaN(SecondValue)) {
+            ErrorMessage.textContent = 'Please Enter Numeric Value in given field';
+        }
+
+        //perfrom the seleted operation on given two input
+        else {
+            ErrorMessage.textContent = '';
+            switch (Operation) {
+                case "Add":
+                    output = FirstValue + SecondValue;
+                    output='Addition of ' + FirstValue + ' and '+ SecondValue +' is:' + output;
+                    break;
+                case "Sub":
+                    output = FirstValue - SecondValue;
+                    output='Subtraction of ' + FirstValue + ' and '+ SecondValue +' is:' + output;
+                    break;
+                case "Mul":
+                    output = FirstValue * SecondValue;
+                    output='Multiplication of ' + FirstValue + ' and '+ SecondValue +' is:' + output;
+                    break;
+                case "Div":
+                    output = FirstValue - SecondValue;
+                    output='Division of ' + FirstValue + ' and '+ SecondValue +' is:' + output;
+                    break;
+                case "Mod":
+                    output = FirstValue % SecondValue;
+                    output='Modulo of ' + FirstValue + ' and '+ SecondValue +' is:' + output;
+                    break;
+            }
+        }
+        ResultMessage.textContent = output;2
+    }
+</script>
+</html>

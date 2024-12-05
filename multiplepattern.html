@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Pattern</title>
+    <style>
+        form {
+            background-color: lightblue;
+            padding: 20px;
+            font-size: 30px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .heading {
+            text-align: center;
+            font-weight: 600;
+            font-size: 35px;
+        }
+
+        .info {
+            background-color: wheat;
+        }
+
+        div {
+            margin: 10px;
+        }
+
+        .patternLb {
+            font-size: 40px;
+        }
+
+        #patternType {
+            height: 100px;
+            width: 350px;
+            font-size: 30px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .integerLb {
+            font-size: 40px;
+        }
+
+        #integer {
+            height: 100px;
+            width: 350px;
+            font-size: 30px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .btn {
+            background-color: black;
+            color: white;
+            width: 400px;
+            height: 50px;
+            font-size: 30px;
+            margin-left: 400px;
+            border-radius: 50px;
+        }
+
+        #errorMessage {
+            background-color: red;
+            color: white;
+            text-align: center;
+            font-size: 50px;
+        }
+
+        #resultMessage {
+            background-color: green;
+            color: yellow;
+            text-align: center;
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <p class="heading">Multiple Pattern Generator</p>
+        <div class="info">
+            <p>Here there are four patterns</p>
+            <p>1.Number simple pattern</p>
+            <p>2.Number reverse pattern</p>
+            <p>3.Star simple pattern</p>
+            <p>4.Star reverse pattern</p>
+        </div>
+        <div>
+            <label for="select" class="patternLb">Select pattern to generate :</label>
+            <select name="patterntype" id="patternType">
+                <option value="1" id="IntSimple">Number Simple Pattern</option>
+                <option value="2" id="IntReverse">Number Reverse Pattern</option>
+                <option value="3" id="StarSimple">Star Simple Pattern</option>
+                <option value="4" id="StarReverse">Star Reverse Pattern</option>
+            </select>
+        </div>
+        <div>
+            <label for="integer" class="integerLb">Enter any number :</label>
+            <input type="text" class="integer" id="integer" placeholder="Enter any integer">
+        </div>
+        <button type="button" class="btn" onclick="return GeneratePattern()">Generate Pattern</button>
+        <p id="errorMessage"></p>
+        <p id="resultMessage"></p>
+    </form>
+</body>
+<script>
+    let pattern;
+    function GeneratePattern() {
+        const PatternType = document.getElementById('patternType').value;
+        const Integer = document.getElementById('integer').value;
+        const ErrorMessage = document.getElementById('errorMessage');
+        const ResultPattern = document.getElementById('resultMessage');
+
+
+        //clear previous generated pattern if any
+        pattern = '';
+        ResultPattern.innerHTML = pattern;
+
+
+        //check whether user entered numeric value or not
+        if (isNaN(Integer) || Integer.trim() === '') {
+            ErrorMessage.textContent = 'Please enter numeric value in number field';
+        }
+
+
+        //generate pattern according to  the selection 
+        else {
+            ErrorMessage.textContent = '';
+            switch (PatternType) {
+                case '1':
+                    for (let i = 1; i <= Integer; i++) {
+                        for (let j = 1; j <= i; j++) {
+                            pattern = pattern + i +' ';
+                        }
+                        pattern = pattern + '<br>';
+                    }
+                    break;
+
+                case '2':
+
+                    for (let i = Integer; i >= 0; i--) {
+                        for (let j = 1; j <= i; j++) {
+                            pattern = pattern + i +' ';
+                        }
+                        pattern = pattern + '<br>';
+                    }
+                    break;
+
+                case '3':
+
+                    for (let i = 1; i <= Integer; i++) {
+                        for (let j = 1; j <= i; j++) {
+                            pattern = pattern + '*' +' ';
+                        }
+                        pattern = pattern + '<br>';
+                    }
+                    break;
+
+                case '4':
+
+                    for (let i = Integer; i >= 0; i--) {
+                        for (let j = 1; j <= i; j++) {
+                            pattern = pattern + '*'+' ';
+                        }
+                        pattern = pattern + '<br>';
+                    }
+                    break;
+            }
+        }
+        ResultPattern.innerHTML = pattern;
+    }
+</script>
+</html>
